@@ -9,6 +9,8 @@ module.exports = {
 	entry: {
 		main: './src/js/index.js',
 		analitycs: './src/js/analitycs.js',
+		domain: './src/js/domain.js',
+		game: './src/js/game.js'
 	},
 	output: {
 		filename: '[name].[contenthash].js',

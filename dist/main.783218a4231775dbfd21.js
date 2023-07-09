@@ -16,7 +16,27 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Post)\n/* harmony export */ });\nclass Post {\n\tconstructor(title) {\n\t\tthis.title = title,\n\t\t\tthis.date = new Date()\n\t}\n\n\ttiString() {\n\t\treturn JSON.stringify({\n\t\t\ttitle: this.title,\n\t\t\tdate: this.date.toJSON()\n\t\t})\n\t}\n}\n\n//# sourceURL=webpack:///./src/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Post)\n/* harmony export */ });\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/js/game.js\");\n\n\n\nconst game = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\ngame.start();\n\n// const character = new Character('Hero', 100);\n// character.attack('Enemy');\n\nconst gameData = new _game__WEBPACK_IMPORTED_MODULE_0__.GameSavingData({ level: 5, score: 1000 });\n\n(0,_game__WEBPACK_IMPORTED_MODULE_0__.readGameSaving)();\n(0,_game__WEBPACK_IMPORTED_MODULE_0__.writeGameSaving)();\n\n\n\n\nclass Post {\n\tconstructor(title) {\n\t\tthis.title = title,\n\t\t\tthis.date = new Date()\n\t}\n\n\ttiString() {\n\t\treturn JSON.stringify({\n\t\t\ttitle: this.title,\n\t\t\tdate: this.date.toJSON()\n\t\t})\n\t}\n}\n\n\n\n//# sourceURL=webpack:///./src/js/app.js?");
+
+/***/ }),
+
+/***/ "./src/js/domain.js":
+/*!**************************!*\
+  !*** ./src/js/domain.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Character)\n/* harmony export */ });\nclass Character {\n\tconstructor(name, health) {\n\t\tthis.name = name;\n\t\tthis.health = health;\n\t}\n\n\tattack(target) {\n\t\tconsole.log(`${this.name} attacks ${target}!`);\n\t}\n}\n\n\n//# sourceURL=webpack:///./src/js/domain.js?");
+
+/***/ }),
+
+/***/ "./src/js/game.js":
+/*!************************!*\
+  !*** ./src/js/game.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   GameSavingData: () => (/* binding */ GameSavingData),\n/* harmony export */   \"default\": () => (/* binding */ Game),\n/* harmony export */   readGameSaving: () => (/* binding */ readGameSaving),\n/* harmony export */   writeGameSaving: () => (/* binding */ writeGameSaving)\n/* harmony export */ });\n/* harmony import */ var _domain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./domain */ \"./src/js/domain.js\");\n\n\nclass Game {\n\tconstructor() {\n\t\tthis.character = new _domain__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('Hero', 100);\n\t}\n\n\tstart() {\n\t\tconsole.log('game started');\n\t\tthis.character.attack('Enemy');\n\t}\n}\n\n\nclass GameSavingData {\n\tconstructor(data) {\n\t\tthis.data = data;\n\t}\n}\n\nfunction readGameSaving() {\n\t// Логика чтения сохраненных данных игры\n\tconsole.log('Reading game saving data...');\n}\n\nfunction writeGameSaving() {\n\t// Логика записи сохраненных данных игры\n\tconsole.log('Writing game saving data...');\n}\n\n\n//# sourceURL=webpack:///./src/js/game.js?");
 
 /***/ }),
 
