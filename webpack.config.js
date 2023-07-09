@@ -1,32 +1,46 @@
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 
 module.exports = {
 	context: path.resolve(__dirname, 'my-webpack-series'),
 	mode: 'development',
 	entry: {
-		main: './src/js/index.js',
-		analitycs: './src/js/analitycs.js',
-		domain: './src/js/domain.js',
-		game: './src/js/game.js'
+		bundle: ['./src/js/index.js', './src/js/analitycs.js', './src/js/domain.js', './src/js/game.js'],
+	},
+	devServer: {
+		contentBase: path.resolve(__dirname, 'dist'),
+		hot: true,
 	},
 	output: {
-		filename: '[name].[contenthash].js',
-		path: path.resolve(__dirname, 'dist')
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, 'dist'),
 	},
 	plugins: [
-		new HTMLWebpackPlugin({
+		new HtmlWebpackPlugin({
 			title: 'webpack shalnou',
-			template: './index.html'
+			filename: 'index.html',
+			template: './src/index.html',
+			hash: true,
 		}),
-		new CleanWebpackPlugin()
+		new CleanWebpackPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 	],
 	module: {
-		rules: [{
-			test: /\.css$/,
-			use: ['style-loader', 'css-loader'],
-		}]
-	}
-}
+		rules: [
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+				},
+			},
+		],
+	},
+};
